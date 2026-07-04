@@ -876,3 +876,82 @@ ul { list-style: none; }
     width: calc(100% - 48px);
   }
 }
+
+/* === SHARED MULTI-PAGE COMPONENTS (T-01) === */
+
+/* Active nav state */
+.nav-links a.active {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* -------------------------
+   Page hero — shorter cloud hero for inner pages
+   ------------------------- */
+.page-hero {
+  padding: 24px 64px var(--space-lg);
+  max-width: 720px;
+}
+
+.page-hero .hero-label {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.page-hero-headline {
+  font-family: var(--font-headline);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--dark-text);
+  margin-bottom: 16px;
+}
+
+.page-hero-sub {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--dark-text);
+  opacity: 0.85;
+  max-width: 520px;
+}
+
+/* -------------------------
+   CTA band — static tan band driving to booking.html
+   ------------------------- */
+.cta-band {
+  background: var(--tan-section);
+  padding: var(--space-lg) 0;
+}
+
+.cta-band .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.cta-band-heading {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.25;
+  color: var(--dark-text);
+  max-width: 480px;
+}
+
+@media (max-width: 960px) {
+  .page-hero {
+    padding: 20px 24px var(--space-md);
+  }
+
+  .cta-band .container {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+/* === END SHARED MULTI-PAGE COMPONENTS === */
