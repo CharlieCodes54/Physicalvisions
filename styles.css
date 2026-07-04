@@ -1,0 +1,878 @@
+/* =========================================================
+   Physical Visions — Home Page
+   Design system: gold accent, cream/cloud floating sections,
+   warm tan "grounded" sections for settled moments.
+   No build step — nudge the variables below and save.
+   ========================================================= */
+
+/* -------------------------
+   CSS Custom Properties
+   ------------------------- */
+:root {
+  /* Locked accent — the one saturated color in the whole system */
+  --gold: #FDCA40;
+
+  /* Base surfaces */
+  --cream: #FBF6EC;          /* default warm background under the cloud sections */
+  --dark-text: #1A1D2B;      /* text ONLY — never a section background */
+
+  /* Grounded / settled section — warm tan counterpoint to the floating cloud sections */
+  --tan-section: #F1E1C2;
+  --card-tan: #F0DDBF;
+  --card-tan-dark: #C9A876;
+
+  /* Cloud / sky */
+  --sky-light: #8FD3F4;
+  --sky-deep: #2E9CDB;
+
+  /* Type */
+  --font-headline: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', Helvetica, Arial, sans-serif;
+
+  /* Spacing + radius */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 32px;
+  --space-lg: 64px;
+  --space-xl: 120px;
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 100px;
+}
+
+/* -------------------------
+   Reset & Base
+   ------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--dark-text);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+
+/* =========================================================
+   MOTION
+   Clouds drift continuously; floating elements bob gently;
+   grounded sections stay completely still by design — that
+   stillness is the point, not an oversight. Content fades in
+   on scroll via the .reveal class (see script.js).
+   ========================================================= */
+@keyframes cloud-drift {
+  0%   { background-position: 0% center; }
+  100% { background-position: 100% center; }
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-6px); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   SKY — full-bleed cloud background behind nav + hero
+   ========================================================= */
+.sky {
+  position: relative;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.32)),
+    url('assets/clouds-bg.jpg');
+  background-size: 200% auto, cover;
+  background-position: 0% center, center;
+  animation: cloud-drift 60s ease-in-out infinite alternate;
+}
+
+/* -------------------------
+   Nav
+   ------------------------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 64px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo img {
+  height: 34px;
+  width: auto;
+}
+
+.nav-logo-word {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  font-size: 15px;
+}
+
+.nav-links a:hover { opacity: 0.7; }
+
+.nav-links-cta { display: none; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--dark-text);
+  margin: 0 auto;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* -------------------------
+   Buttons
+   ------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 16px 32px;
+  border-radius: var(--radius-pill);
+  background: var(--gold);
+  color: var(--dark-text);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(253, 202, 64, 0.35);
+}
+
+.btn-sm {
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--dark-text);
+  color: var(--dark-text);
+}
+
+.btn-outline:hover {
+  box-shadow: none;
+  background: var(--dark-text);
+  color: var(--tan-section);
+}
+
+/* -------------------------
+   Hero
+   ------------------------- */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  padding: 24px 0 var(--space-xl);
+  position: relative;
+  min-height: 560px;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 560px;
+  padding: 40px 0 0 64px;
+}
+
+.hero-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dark-text);
+  opacity: 0.65;
+}
+
+.hero-headline {
+  font-family: var(--font-headline);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 58px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--dark-text);
+}
+
+.hero-headline em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--dark-text);
+  max-width: 460px;
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.hero-trust {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--dark-text);
+  opacity: 0.65;
+}
+
+.credential-chip {
+  position: absolute;
+  top: 380px;
+  right: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 24px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 16px 34px rgba(20, 50, 80, 0.16);
+  width: 240px;
+  animation: gentle-float 5s ease-in-out infinite;
+}
+
+.credential-chip-title {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--dark-text);
+}
+
+.credential-chip-sub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--dark-text);
+  opacity: 0.7;
+}
+
+/* =========================================================
+   SECTION HEADER (shared pattern)
+   ========================================================= */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 560px;
+  margin-bottom: var(--space-lg);
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--card-tan-dark);
+}
+
+.section-heading {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.15;
+  color: var(--dark-text);
+}
+
+/* =========================================================
+   JOURNEY SECTION ("How It Works") — grounded, settled
+   ========================================================= */
+.journey {
+  background: var(--cream);
+  padding: var(--space-xl) 0;
+}
+
+.journey-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.journey-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--card-tan);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: 0 8px 24px rgba(42, 46, 64, 0.08);
+}
+
+.journey-row > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.journey-row.offset {
+  width: calc(100% - 120px);
+  margin-left: 120px;
+}
+
+.journey-number {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 72px;
+  color: var(--dark-text);
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.journey-number--md { font-size: 56px; }
+.journey-number--lg { font-size: 84px; }
+
+.journey-row-title {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--dark-text);
+  margin-bottom: 10px;
+}
+
+.journey-row-body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--dark-text);
+  opacity: 0.85;
+  max-width: 520px;
+}
+
+/* =========================================================
+   WHO THIS IS FOR — asymmetric two-column, floating quote card
+   ========================================================= */
+.who {
+  position: relative;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url('assets/clouds-bg.jpg');
+  background-size: 200% auto, cover;
+  background-position: 0% center, center;
+  animation: cloud-drift 70s ease-in-out infinite alternate;
+  padding: var(--space-xl) 0;
+}
+
+.who-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.who-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.who-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.who-check {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--dark-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.who-closing {
+  margin-top: var(--space-md);
+  font-family: var(--font-headline);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.4;
+  max-width: 460px;
+}
+
+.who-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-md);
+  box-shadow: 0 20px 44px rgba(20, 50, 80, 0.14);
+  animation: gentle-float 6s ease-in-out infinite;
+  margin-top: 48px;
+}
+
+.who-card-number {
+  font-family: var(--font-headline);
+  font-size: 64px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.who-card-label {
+  font-size: 15px;
+  margin-top: 8px;
+  opacity: 0.75;
+}
+
+/* =========================================================
+   COACH — grounded/settled tan section, asymmetric photo
+   ========================================================= */
+.coach {
+  background: var(--tan-section);
+  padding: var(--space-xl) 0;
+}
+
+.coach-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.coach-photo-wrap {
+  position: relative;
+}
+
+.coach-photo {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 50px rgba(42, 46, 64, 0.18);
+  transform: rotate(-2deg);
+}
+
+.coach-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.coach-credential-tag {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--dark-text);
+  color: var(--gold);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 12px 28px rgba(20, 50, 80, 0.25);
+}
+
+.coach-name {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.coach-title {
+  font-size: 15px;
+  opacity: 0.7;
+  margin-bottom: var(--space-sm);
+}
+
+.coach-bio p {
+  margin-bottom: 16px;
+  max-width: 560px;
+  opacity: 0.9;
+}
+
+.coach-bio p:last-child { margin-bottom: 0; }
+
+/* =========================================================
+   TESTIMONIALS — asymmetric, one featured + two stacked
+   ========================================================= */
+.testimonials {
+  background: var(--cream);
+  padding: var(--space-xl) 0;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-md);
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: 0 10px 28px rgba(42, 46, 64, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.testimonial-featured {
+  padding: var(--space-lg) var(--space-md);
+  justify-content: center;
+}
+
+.testimonial-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.testimonial-quote {
+  font-family: var(--font-headline);
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--dark-text);
+}
+
+.testimonial-stack .testimonial-quote {
+  font-size: 17px;
+}
+
+.testimonial-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-person img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.testimonial-context {
+  font-size: 13px;
+  opacity: 0.65;
+}
+
+/* =========================================================
+   BOOKING — cloud section, countdown + seats + GHL widget
+   ========================================================= */
+.booking {
+  position: relative;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+    url('assets/clouds-bg.jpg');
+  background-size: 200% auto, cover;
+  background-position: 0% center, center;
+  animation: cloud-drift 80s ease-in-out infinite alternate;
+  padding: var(--space-xl) 0;
+}
+
+.booking-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-lg);
+}
+
+.booking-header .section-label { justify-content: center; }
+
+.booking-intro {
+  font-size: 17px;
+  opacity: 0.85;
+  margin-top: 12px;
+}
+
+.urgency-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+
+.urgency-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-md);
+  padding: 18px 28px;
+  text-align: center;
+  min-width: 140px;
+  box-shadow: 0 12px 28px rgba(20, 50, 80, 0.12);
+  animation: gentle-float 5.5s ease-in-out infinite;
+}
+
+.urgency-card:nth-child(2) { animation-delay: 0.6s; }
+
+.urgency-number {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--dark-text);
+}
+
+.urgency-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-top: 4px;
+}
+
+.booking-widget {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm);
+  box-shadow: 0 24px 50px rgba(20, 50, 80, 0.16);
+}
+
+.booking-widget iframe {
+  width: 100%;
+  min-height: 480px;
+  border: none;
+}
+
+.booking-note {
+  text-align: center;
+  max-width: 520px;
+  margin: var(--space-md) auto 0;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   FAQ — side-by-side grid, not an accordion
+   ========================================================= */
+.faq {
+  background: var(--tan-section);
+  padding: var(--space-xl) 0;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md) var(--space-lg);
+}
+
+.faq-item {
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(26, 29, 43, 0.12);
+}
+
+.faq-q {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.faq-a {
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+  background: var(--dark-text);
+  color: var(--cream);
+  padding: var(--space-lg) 0 var(--space-md);
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-lg);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-brand img { height: 30px; }
+
+.footer-brand-word {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--cream);
+}
+
+.footer-tagline {
+  font-family: var(--font-headline);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--gold);
+  margin-top: 12px;
+}
+
+.footer-col-title {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.footer-links a:hover { opacity: 0.7; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(251, 246, 236, 0.15);
+  padding-top: var(--space-sm);
+  font-size: 13px;
+  opacity: 0.6;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 960px) {
+  .hero { flex-direction: column; }
+  .hero-copy { padding: 32px 24px 0; max-width: 100%; }
+  .hero-headline { font-size: 40px; }
+  .credential-chip { position: static; margin: 32px 24px 0; width: auto; }
+
+  .journey-row.offset { margin-left: 0; }
+  .journey-row { flex-direction: column; align-items: flex-start; }
+
+  .who-grid { grid-template-columns: 1fr; }
+  .who-card { margin-top: var(--space-md); }
+
+  .coach-grid { grid-template-columns: 1fr; }
+  .coach-photo { max-width: 320px; margin: 0 auto; }
+  .coach-credential-tag { right: 12px; bottom: -16px; }
+
+  .testimonial-grid { grid-template-columns: 1fr; }
+
+  .faq-grid { grid-template-columns: 1fr; }
+
+  .container { padding: 0 24px; }
+  .nav { padding: 20px 24px; position: relative; }
+
+  .nav-cta-desktop { display: none; }
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    position: absolute;
+    z-index: 30;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--cream);
+    box-shadow: 0 16px 30px rgba(20, 50, 80, 0.14);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .nav-links.open { max-height: 480px; }
+
+  .nav-links a {
+    width: 100%;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(26, 29, 43, 0.08);
+  }
+
+  .nav-links-cta {
+    display: inline-flex;
+    margin: 16px 24px;
+    width: calc(100% - 48px);
+  }
+}
