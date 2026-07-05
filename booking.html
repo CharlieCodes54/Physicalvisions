@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking | Physical Visions</title>
+  <meta name="description" content="Reserve your free Thursday coaching call with Cody Carrier, NASM-certified coach. Pick a time below, no credit card, no pitch." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/pv-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- =========================================================
+       SKY — full-bleed cloud background behind nav + page-hero
+       ========================================================= -->
+  <div class="sky">
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <img src="assets/pv-logo.png" alt="Physical Visions" />
+        <span class="nav-logo-word">PHYSICAL VISIONS</span>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="resources.html">Resources</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="booking.html" class="active">Booking</a>
+        <a href="booking.html" class="btn btn-sm nav-links-cta">Book a Call</a>
+      </div>
+      <a href="booking.html" class="btn btn-sm nav-cta-desktop">Book a Call</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <header class="page-hero container">
+      <span class="hero-label">Booking</span>
+      <h1 class="page-hero-headline">Reserve your Thursday call.</h1>
+      <p class="page-hero-sub">Pick a date below. No credit card, no pitch, just a real conversation with Cody.</p>
+    </header>
+
+  </div>
+
+  <!-- =========================================================
+       BOOKING — cloud section, countdown + seats + capacity +
+       GHL widget (the confirmed calendar, ID 6GK8R8UNQwHmLOpPVCyv)
+       ========================================================= -->
+  <section class="booking" id="booking-widget-section">
+    <div class="container">
+      <div class="booking-header reveal">
+        <span class="section-label">Book Your Spot</span>
+        <h2 class="section-heading">Reserve your free spot</h2>
+        <p class="booking-intro">Every Thursday. Google Meet, join from your phone, tablet, or computer. Seats are limited, and kept intentionally small.</p>
+      </div>
+
+      <div class="urgency-row reveal">
+        <div class="urgency-card">
+          <div class="urgency-number" data-countdown-days>—</div>
+          <div class="urgency-label">Days Left</div>
+        </div>
+        <div class="urgency-card">
+          <div class="urgency-number" data-countdown-hours>—</div>
+          <div class="urgency-label">Hours Left</div>
+        </div>
+        <div class="urgency-card">
+          <div class="urgency-number"><span data-seats-left>6</span></div>
+          <div class="urgency-label">Seats Left</div>
+        </div>
+      </div>
+
+      <div class="capacity-bar">
+        <p><strong><span data-seats-left>6</span> seats remaining</strong> of [NEEDS CODY INPUT: total weekly seat capacity for the Thursday call] for this Thursday</p>
+        <div class="capacity-track"><div class="capacity-fill capacity-fill--unknown"></div></div>
+      </div>
+
+      <div class="booking-widget reveal">
+        <iframe src="https://link.martechla.com/widget/booking/6GK8R8UNQwHmLOpPVCyv" title="Reserve your free coaching call" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="6GK8R8UNQwHmLOpPVCyv_1781739598770"></iframe>
+        <script src="https://link.martechla.com/js/form_embed.js" type="text/javascript"></script>
+      </div>
+
+      <p class="booking-note">This isn't a webinar with unlimited seats. It's a small, intentionally limited group. Once the spots for the week fill, they fill.</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       WHAT TO EXPECT — adapted from Home's journey copy,
+       reframed for someone landing directly on this page
+       ========================================================= -->
+  <section class="journey" id="what-to-expect">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">What To Expect</span>
+        <h2 class="section-heading">Here's what actually happens once you book</h2>
+      </div>
+
+      <div class="journey-rows">
+
+        <div class="journey-row reveal">
+          <span class="journey-number">01</span>
+          <div>
+            <p class="journey-row-title">Come exactly as you are</p>
+            <p class="journey-row-body">No prep needed. Cody opens by listening, not lecturing. You tell him where you're at with your health right now, in your own words.</p>
+          </div>
+        </div>
+
+        <div class="journey-row offset reveal">
+          <span class="journey-number journey-number--md">02</span>
+          <div>
+            <p class="journey-row-title">Leave with one specific thing to try</p>
+            <p class="journey-row-body">Not a diet plan or a workout program. One small, doable step, picked for your actual week, not pulled from a template.</p>
+          </div>
+        </div>
+
+        <div class="journey-row reveal">
+          <span class="journey-number journey-number--lg">03</span>
+          <div>
+            <p class="journey-row-title">Come back and it compounds</p>
+            <p class="journey-row-body">The group returns the following Thursday and shares what happened. That weekly rhythm, more than any single call, is where the real change happens.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <img src="assets/pv-logo.png" alt="Physical Visions" />
+            <span class="footer-brand-word">PHYSICAL VISIONS</span>
+          </div>
+          <p class="footer-tagline">Quality. Consistency. Care.</p>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Contact</p>
+          <div class="footer-links">
+            <a href="mailto:Cody@physicalvisions.com">Cody@physicalvisions.com</a>
+            <a href="tel:+18187989636">(818) 798-9636</a>
+            <a href="https://instagram.com/physicalvisions" target="_blank" rel="noopener">@physicalvisions</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Site</p>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="resources.html">Resources</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="booking.html">Booking</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Physical Visions. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

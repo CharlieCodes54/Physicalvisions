@@ -1449,3 +1449,51 @@ ul { list-style: none; }
   .membership-foundation-head { flex-direction: column; align-items: flex-start; }
 }
 /* === END PRICING PAGE === */
+
+/* === BOOKING PAGE === */
+
+/* -------------------------
+   Capacity bar — static, real numerator only, no computed fill %
+   ------------------------- */
+.capacity-bar {
+  max-width: 560px;
+  margin: 0 auto var(--space-lg);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  box-shadow: 0 12px 28px rgba(20, 50, 80, 0.12);
+}
+
+.capacity-bar p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--dark-text);
+  margin-bottom: 10px;
+}
+
+.capacity-track {
+  background: rgba(26, 29, 43, 0.12);
+  border-radius: var(--radius-pill);
+  height: 8px;
+  overflow: hidden;
+}
+
+.capacity-fill {
+  height: 100%;
+}
+
+/* Indeterminate pattern — total capacity is unconfirmed, so this
+   deliberately does NOT render as a computed percentage fill. */
+.capacity-fill--unknown {
+  width: 100%;
+  border-radius: var(--radius-pill);
+  opacity: 0.5;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--gold) 0px,
+    var(--gold) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+/* === END BOOKING PAGE === */
